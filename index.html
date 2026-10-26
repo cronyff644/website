@@ -1,522 +1,682 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jodd Top - Premium Apps</title>
-    <!-- Google Fonts: Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        :root {
-            --bg-color: #07090e;
-            --card-bg: #0f131f;
-            --card-border: rgba(0, 243, 255, 0.25);
-            --card-border-hover: rgba(0, 243, 255, 0.7);
-            --neon-cyan: #00f3ff;
-            --neon-purple: #b000ff;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --btn-green: #10b981;
-            --btn-green-hover: #059669;
-            --glow-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#02040c">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
+<title>JODD TOP | Premium Apps Hub</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(176, 0, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 40%);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 30px;
-            background: rgba(15, 19, 31, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+<style>
+:root {
+    --cyan: #00d9ff;
+    --blue: #075bff;
+    --text: #f3f7ff;
+    --muted: #91a7c9;
+}
 
-        .logo {
-            font-size: 1.6rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .menu-btn {
-            background: none;
-            border: none;
-            color: var(--text-main);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: transform 0.2s ease, color 0.2s ease;
-        }
+html { scroll-behavior: smooth; }
 
-        .menu-btn:hover {
-            color: var(--neon-cyan);
-            transform: scale(1.1);
-        }
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    color: var(--text);
+    background:
+        radial-gradient(ellipse at 50% 0%, #071a40, transparent 48%),
+        #02040c;
+}
 
-        /* Main Container */
-        .container {
-            max-width: 1200px;
-            margin: 40px auto;
-            padding: 0 20px;
-        }
+button, a { -webkit-tap-highlight-color: transparent; }
 
-        .main-heading {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 40px;
-            background: linear-gradient(135deg, #ffffff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
-        }
+.header {
+    width: calc(100% - 28px);
+    max-width: 700px;
+    margin: 15px auto;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border: 1px solid #087cff66;
+    border-radius: 18px;
+    background: #050c1ce8;
+    backdrop-filter: blur(20px);
+}
 
-        .main-heading span {
-            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.menu-btn {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid #087cff80;
+    border-radius: 12px;
+    background: #071329;
+    cursor: pointer;
+}
 
-        /* Apps Grid (3 Apps) */
-        .apps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-            justify-content: center;
-        }
+.menu-btn span {
+    width: 19px;
+    height: 2px;
+    background: var(--cyan);
+}
 
-        /* App Box */
-        .app-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 25px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--glow-shadow);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: white;
+    text-decoration: none;
+}
 
-        .app-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--card-border-hover);
-            box-shadow: 0 0 35px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.05);
-        }
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    object-fit: contain;
+    border-radius: 10px;
+}
 
-        /* App Icon */
-        .app-icon-wrap {
-            width: 90px;
-            height: 90px;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
+.brand-name {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    font-size: clamp(14px, 4vw, 21px);
+}
 
-        .app-icon-wrap img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-        }
+.brand-name span { color: var(--cyan); }
 
-        .app-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
+.brand-subtitle {
+    color: #80b9ff;
+    font-size: 9px;
+    letter-spacing: 2px;
+    margin-top: 4px;
+}
 
-        .app-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
+.header-badge {
+    color: #8ddfff;
+    font-size: 11px;
+    padding: 8px;
+    border: 1px solid #087cff55;
+    border-radius: 30px;
+}
 
-        /* Review & Tag info */
-        .app-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            margin-bottom: 25px;
-            padding: 10px 15px;
-            background: rgba(0, 0, 0, 0.25);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 20;
+    background: #000b;
+    opacity: 0;
+    visibility: hidden;
+    transition: .3s;
+}
 
-        .stars {
-            color: #f59e0b;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-        }
+.overlay.active { opacity: 1; visibility: visible; }
 
-        .hot-badge {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 4px 10px;
-            border-radius: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 0 10px rgba(255, 65, 108, 0.4);
-        }
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 21;
+    width: min(320px, 86vw);
+    height: 100vh;
+    height: 100dvh;
+    padding: 28px 23px;
+    background: #030814;
+    border-right: 1px solid #087cff66;
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition: .3s;
+}
 
-        /* Install Button with Slow Mirror Shine & Green Theme */
-        .install-btn {
-            width: 100%;
-            padding: 14px 20px;
-            background-color: var(--btn-green);
-            color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-            text-decoration: none;
-        }
+.side-menu.active {
+    transform: translateX(0);
+    visibility: visible;
+}
 
-        .install-btn:hover {
-            background-color: var(--btn-green-hover);
-            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
-            transform: translateY(-2px);
-        }
+.close-btn {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    color: white;
+    font-size: 30px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
 
-        /* Slow Mirror Shine Glare Animation (1.5s duration) */
-        .install-btn::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                60deg,
-                transparent 30%,
-                rgba(255, 255, 255, 0.35) 50%,
-                transparent 70%
-            );
-            transform: rotate(30deg) translateX(-100%);
-            transition: transform 1.5s ease;
-        }
+.side-brand { margin: 45px 0 25px; }
 
-        .install-btn:hover::after {
-            transform: rotate(30deg) translateX(100%);
-        }
+.side-brand img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
 
-        /* Loading Circle Spinner inside Button */
-        .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid #ffffff;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            display: inline-block;
-        }
+.side-brand h2 {
+    margin-top: 10px;
+    font: 900 22px 'Orbitron', sans-serif;
+}
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+.side-brand h2 span { color: var(--cyan); }
 
-        /* Sidebar Drawer */
-        .sidebar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            z-index: 1000;
-        }
+.side-item {
+    padding: 16px 0;
+    border-top: 1px solid #183256;
+}
 
-        .sidebar-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+.side-item p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 6px;
+}
 
-        .sidebar {
-            position: fixed;
-            top: 0;
-            right: -350px;
-            width: 320px;
-            height: 100%;
-            background: #0f131f;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-            padding: 30px;
-            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1001;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
+.side-footer {
+    position: absolute;
+    bottom: 25px;
+    color: #66aaff;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
 
-        .sidebar.active {
-            right: 0;
-        }
+.hero {
+    text-align: center;
+    padding: 30px 18px;
+}
 
-        .sidebar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-        }
+.hero-logo {
+    width: 85px;
+    height: 85px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px #008cff55);
+}
 
-        .sidebar-header h3 {
-            font-size: 1.2rem;
-            color: var(--neon-cyan);
-        }
+.hero h1 {
+    margin-top: 12px;
+    font: 900 clamp(30px, 8vw, 46px) 'Orbitron', sans-serif;
+    letter-spacing: -1px;
+}
 
-        .close-sidebar {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
+.hero h1 span {
+    background: linear-gradient(90deg, #fff, #54caff, #416cff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
-        .close-sidebar:hover {
-            color: #ffffff;
-        }
+.hero-subtitle {
+    margin-top: 12px;
+    color: #70b9ff;
+    font-size: 11px;
+    letter-spacing: 4px;
+}
 
-        .sidebar-content {
-            flex-grow: 1;
-        }
+.hero-line {
+    width: 130px;
+    height: 2px;
+    margin: 18px auto;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
 
-        .welcome-box {
-            background: rgba(0, 243, 255, 0.05);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
+.hero-tagline {
+    color: #a6c8f7;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
 
-        .welcome-box h4 {
-            color: var(--neon-cyan);
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
+.apps-section {
+    width: 100%;
+    max-width: 620px;
+    margin: auto;
+    padding: 10px 18px 30px;
+}
 
-        .welcome-box p, .edu-notice p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
 
-        .edu-notice {
-            background: rgba(176, 0, 255, 0.05);
-            border: 1px solid rgba(176, 0, 255, 0.2);
-            border-radius: 12px;
-            padding: 15px;
-        }
+.section-heading h2 {
+    font: 700 19px 'Orbitron', sans-serif;
+}
 
-        .edu-notice h4 {
-            color: #d946ef;
-            margin-bottom: 8px;
-            font-size: 1rem;
-        }
+.section-heading p {
+    color: var(--muted);
+    margin-top: 7px;
+}
 
-        .sidebar-footer {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 15px;
-        }
+.app-count {
+    color: #9bdfff;
+    border: 1px solid #087cff55;
+    border-radius: 30px;
+    padding: 8px 11px;
+    font-size: 11px;
+}
 
-        @media (max-width: 768px) {
-            .main-heading {
-                font-size: 2rem;
-            }
-            .apps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+.app-card {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 21px;
+    padding: 22px;
+    border: 1px solid #087cff66;
+    border-radius: 23px;
+    background: linear-gradient(135deg, #091832cc, #030713ed);
+    backdrop-filter: blur(22px);
+    box-shadow: 0 12px 40px #0007, inset 0 1px 0 #ffffff0a;
+    transition: .25s;
+}
+
+.app-card::before {
+    content: "";
+    position: absolute;
+    top: -80px;
+    right: -60px;
+    width: 170px;
+    height: 170px;
+    background: #087cff;
+    filter: blur(90px);
+    opacity: .18;
+    pointer-events: none;
+}
+
+.app-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--cyan);
+    box-shadow: 0 0 30px #006eff30;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+    gap: 10px;
+}
+
+.app-logo {
+    width: 76px;
+    height: 76px;
+    object-fit: contain;
+    border-radius: 19px;
+    border: 1px solid #21caff;
+    background: #030b1c;
+}
+
+.app-badge {
+    color: #6fe7ff;
+    padding: 8px 10px;
+    border: 1px solid #078bff66;
+    border-radius: 9px;
+    font-size: 11px;
+}
+
+.version {
+    display: inline-block;
+    color: #a9cfff;
+    border: 1px solid #087cff55;
+    border-radius: 30px;
+    padding: 6px 10px;
+    margin-bottom: 13px;
+    font-size: 12px;
+}
+
+.app-card h3 {
+    font: 700 clamp(18px, 5vw, 22px) 'Orbitron', sans-serif;
+    margin-bottom: 10px;
+}
+
+.app-card h3 span { color: var(--cyan); }
+
+.app-description {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 17px;
+}
+
+.feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 21px;
+}
+
+.feature {
+    padding: 7px 10px;
+    border: 1px solid #4b90ff35;
+    border-radius: 9px;
+    background: #030e2366;
+    color: #b8d6ff;
+    font-size: 12px;
+}
+
+.feature span { color: var(--cyan); }
+
+.download {
+    width: 100%;
+    min-height: 53px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #86ffae;
+    border-radius: 50px;
+    color: white;
+    background: linear-gradient(110deg, #008f39, #00c853, #00e676);
+    box-shadow:
+        0 5px 20px #00e67635,
+        inset 0 1px 0 #ffffff30;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.download:hover {
+    background: linear-gradient(110deg, #00a844, #00e676, #69ff9a);
+    box-shadow: 0 7px 28px #00e67665;
+}
+
+.download:active {
+    transform: scale(.98);
+}
+.download:hover { box-shadow: 0 7px 28px #008cff55; }
+.download:active { transform: scale(.98); }
+
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 3px solid #ffffff50;
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.trust-panel {
+    width: calc(100% - 36px);
+    max-width: 620px;
+    margin: 0 auto 25px;
+    padding: 17px 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 7px;
+    border: 1px solid #2185d94d;
+    border-radius: 18px;
+    background: #050f21b8;
+}
+
+.trust-item { text-align: center; padding: 5px 3px; }
+.trust-icon { color: var(--cyan); font-size: 22px; margin-bottom: 8px; }
+.trust-item strong { display: block; font-size: 12px; margin-bottom: 5px; }
+.trust-item p { color: var(--muted); font-size: 11px; line-height: 1.5; }
+
+.footer {
+    text-align: center;
+    padding: 20px 18px 30px;
+    border-top: 1px solid #ffffff0a;
+    color: #6e9dcf;
+    font-size: 11px;
+    line-height: 2.2;
+    letter-spacing: 2px;
+}
+
+.footer strong {
+    display: block;
+    color: var(--cyan);
+    font: 700 14px 'Orbitron', sans-serif;
+    letter-spacing: 4px;
+}
+
+@media (max-width: 380px) {
+    .header { padding: 10px; gap: 6px; }
+    .brand { gap: 6px; }
+    .brand-logo { width: 30px; height: 30px; }
+    .brand-subtitle { font-size: 7px; letter-spacing: 1px; }
+    .header-badge { padding: 7px; font-size: 9px; }
+    .app-card { padding: 18px; }
+}
+</style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">Jodd Top</div>
-        <button class="menu-btn" id="menuOpenBtn" aria-label="Open Menu">
-            <i class="fa-solid fa-bars-staggered"></i>
-        </button>
-    </header>
+<header class="header">
+    <button class="menu-btn" id="menuBtn"
+            aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
 
-    <!-- Main Container -->
-    <main class="container">
-        <h1 class="main-heading">Explore <span>Premium Apps</span></h1>
-
-        <div class="apps-grid">
-            <!-- App 1 -->
-            <div class="app-card">
-                <div class="app-icon-wrap">
-                    <img src="https://raw.githubusercontent.com/cronyff644/website/main/WhatsApp%20Image%202026-10-26%20at%208.51.10%20PM.jpeg" alt="App 1 Icon">
-                </div>
-                <div class="app-title">INDIA GAME</div>
-                <div class="app-desc">Advanced game and privacy tool designed for ultimate gaming experience.</div>
-                <div class="app-meta">
-                    <div class="stars">★★★★★</div>
-                    <div class="hot-badge">Hot & Premium</div>
-                </div>
-                <a href="https://dasboard7.vercel.app/s/1gvscb" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
-                    <span class="btn-text">Install App</span>
-                </a>
-            </div>
-
-            <!-- App 2 -->
-            <div class="app-card">
-                <div class="app-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2885/2885461.pn" alt="App 2 Icon">
-                </div>
-                <div class="app-title">Nexus Optimizer</div>
-                <div class="app-desc">Boost device performance and manage high-end resources efficiently.</div>
-                <div class="app-meta">
-                    <div class="stars">★★★★★</div>
-                    <div class="hot-badge">Hot & Premium</div>
-                </div>
-                <a href="https://example.com/app2" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
-                    <span class="btn-text">Install App</span>
-                </a>
-            </div>
-
-            <!-- App 3 -->
-            <div class="app-card">
-                <div class="app-icon-wrap">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="App 3 Icon">
-                </div>
-                <div class="app-title">Aura Launcher</div>
-                <div class="app-desc">Experience a sleek, futuristic UI interface with custom glowing widgets.</div>
-                <div class="app-meta">
-                    <div class="stars">★★★★★</div>
-                    <div class="hot-badge">Hot & Premium</div>
-                </div>
-                <a href="https://example.com/app3" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
-                    <span class="btn-text">Install App</span>
-                </a>
-            </div>
-        </div>
-    </main>
-
-    <!-- Sidebar Drawer -->
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <div class="sidebar" id="sidebar">
+    <a href="#" class="brand">
+        <img src="" class="brand-logo" alt="JODD TOP logo">
         <div>
-            <div class="sidebar-header">
-                <h3>About Jodd Top</h3>
-                <button class="close-sidebar" id="menuCloseBtn">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <div class="sidebar-content">
-                <div class="welcome-box">
-                    <h4>Welcome Message</h4>
-                    <p>Welcome to Jodd Top! Your ultimate destination for handpicked high-end applications and tools.</p>
-                </div>
-                <div class="edu-notice">
-                    <h4>Educational Purpose</h4>
-                    <p>This website and its content are created strictly for educational and demonstration purposes only.</p>
-                </div>
-            </div>
+            <div class="brand-name">JODD <span>TOP</span></div>
+            <div class="brand-subtitle">PREMIUM APPS HUB</div>
         </div>
-        <div class="sidebar-footer">
-            &copy; 2026 Jodd Top. All rights reserved.
-        </div>
+    </a>
+
+    <div class="header-badge">✦ APP HUB</div>
+</header>
+
+<div class="overlay" id="overlay"></div>
+
+<nav class="side-menu" id="sideMenu" inert>
+    <button class="close-btn" id="closeBtn" aria-label="Close menu">×</button>
+
+    <div class="side-brand">
+        <img src="logo.png" alt="JODD TOP logo">
+        <h2>JODD <span>TOP</span></h2>
     </div>
 
-    <script>
-        // Sidebar Toggle Logic
-        const menuOpenBtn = document.getElementById('menuOpenBtn');
-        const menuCloseBtn = document.getElementById('menuCloseBtn');
-        const sidebar = document.getElementById('sidebar');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
+    <div class="side-item">
+        <strong>About JODD TOP</strong>
+        <p>Your Android app hub, with download links in one place.</p>
+    </div>
 
-        function toggleSidebar() {
-            sidebar.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
+    <div class="side-item">
+        <strong>Safety Information</strong>
+        <p>Download from trusted sources and check app permissions before installing.</p>
+    </div>
+
+    <div class="side-item">
+        <strong>Disclaimer</strong>
+        <p>App names, logos and trademarks belong to their respective owners.</p>
+    </div>
+
+    <div class="side-footer">PREMIUM APPS HUB</div>
+</nav>
+
+<section class="hero">
+    <img src="logo.png" class="hero-logo" alt="JODD TOP logo">
+    <h1>JODD <span>TOP</span></h1>
+    <div class="hero-subtitle">PREMIUM APPS HUB</div>
+    <div class="hero-line"></div>
+    <p class="hero-tagline">YOUR FAVORITE APPS · ONE PLACE</p>
+</section>
+
+<main class="apps-section">
+    <div class="section-heading">
+        <div>
+            <h2>OUR APPS</h2>
+            <p>Choose an app to continue</p>
+        </div>
+        <span class="app-count">03 APPS</span>
+    </div>
+
+    <div class="apps-container">
+
+        <article class="app-card">
+            <div class="card-top">
+                <img src="https://raw.githubusercontent.com/cronyff644/website/main/WhatsApp%20Image%202026-10-26%20at%208.51.10%20PM.jpeg" class="app-logo" alt="App 1 logo">
+                <span class="app-badge">★ TOP APP</span>
+            </div>
+            <div class="version">VERSION 1.0.0</div>
+            <h3>INDIA <span> GAME</span></h3>
+            <p class="app-description">
+                Check out this Android app. Tap below to open its link.
+            </p>
+            <div class="feature-list">
+                <div class="feature"><span>✦</span> Android</div>
+                <div class="feature"><span>◇</span> App Link</div>
+                <div class="feature"><span>ϟ</span> Easy Access</div>
+            </div>
+            <a href="https://dasboard7.vercel.app/s/1gvscb"
+               class="download" data-download>
+                <span class="download-icon">🚀</span>
+                <span class="download-text">INSTALL NOW </span>
+            </a>
+        </article>
+
+        <article class="app-card">
+            <div class="card-top">
+                <img src="logo2.png" class="app-logo" alt="App 2 logo">
+                <span class="app-badge">✦ FEATURED</span>
+            </div>
+            <div class="version">VERSION 2.1.0</div>
+            <h3>Second <span>App</span></h3>
+            <p class="app-description">
+                Open the link below to access your selected application.
+            </p>
+            <div class="feature-list">
+                <div class="feature"><span>✦</span> Android</div>
+                <div class="feature"><span>◇</span> App Link</div>
+                <div class="feature"><span>✓</span> Easy Access</div>
+            </div>
+            <a href="https://dasboard7.vercel.app/s/1gvscb"
+               class="download" data-download>
+                <span class="download-icon">↓</span>
+                <span class="download-text">Download APK</span>
+            </a>
+        </article>
+
+        <article class="app-card">
+            <div class="card-top">
+                <img src="logo3.png" class="app-logo" alt="App 3 logo">
+                <span class="app-badge">↗ TRENDING</span>
+            </div>
+            <div class="version">VERSION 1.5.0</div>
+            <h3>Third <span>App</span></h3>
+            <p class="app-description">
+                Tap below to visit the app link on JODD TOP.
+            </p>
+            <div class="feature-list">
+                <div class="feature"><span>✦</span> Android</div>
+                <div class="feature"><span>◇</span> App Link</div>
+                <div class="feature"><span>✓</span> Easy Access</div>
+            </div>
+            <a href="https://dasboard7.vercel.app/s/1gvscb"
+               class="download" data-download>
+                <span class="download-icon">↓</span>
+                <span class="download-text">Download APK</span>
+            </a>
+        </article>
+
+    </div>
+</main>
+
+<section class="trust-panel">
+    <div class="trust-item">
+        <div class="trust-icon">ϟ</div>
+        <strong>Safety First</strong>
+        <p>Check app sources</p>
+    </div>
+    <div class="trust-item">
+        <div class="trust-icon">◇</div>
+        <strong>Quick Access</strong>
+        <p>Simple links</p>
+    </div>
+    <div class="trust-item">
+        <div class="trust-icon">✦</div>
+        <strong>Android Apps</strong>
+        <p>Android devices</p>
+    </div>
+</section>
+
+<footer class="footer">
+    <strong>JODD TOP</strong>
+    DOWNLOAD · ENJOY · REPEAT
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const sideMenu = document.getElementById("sideMenu");
+const overlay = document.getElementById("overlay");
+const closeBtn = document.getElementById("closeBtn");
+
+function openMenu() {
+    sideMenu.classList.add("active");
+    overlay.classList.add("active");
+    sideMenu.inert = false;
+    document.body.style.overflow = "hidden";
+    menuBtn.setAttribute("aria-expanded", "true");
+    closeBtn.focus();
+}
+
+function closeMenu() {
+    sideMenu.classList.remove("active");
+    overlay.classList.remove("active");
+    sideMenu.inert = true;
+    document.body.style.overflow = "";
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.focus();
+}
+
+menuBtn.addEventListener("click", openMenu);
+closeBtn.addEventListener("click", closeMenu);
+overlay.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" &&
+        sideMenu.classList.contains("active")) {
+        closeMenu();
+    }
+});
+
+document.querySelectorAll("[data-download]").forEach(function(button) {
+    button.addEventListener("click", function(event) {
+        const url = button.getAttribute("href");
+
+        if (!url) {
+            event.preventDefault();
+            return;
         }
 
-        menuOpenBtn.addEventListener('click', toggleSidebar);
-        menuCloseBtn.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', toggleSidebar);
+        event.preventDefault();
 
-        // Install Button "Entering..." & Loading Circle Logic with href support
-        function handleInstall(event, button) {
-            // Prevent multiple clicks while loading
-            if (button.classList.contains('entering')) {
-                event.preventDefault();
-                return;
-            }
+        if (button.classList.contains("loading")) return;
 
-            button.classList.add('entering');
-            
-            // Change button content to circle spinner and "Entering..." text while keeping green background
-            button.innerHTML = '<span class="spinner"></span> Entering...';
+        button.classList.add("loading");
+        button.setAttribute("aria-busy", "true");
 
-            // Allow the link to open naturally via href after showing the state for a short moment
-            const targetUrl = button.getAttribute('href');
-            
-            setTimeout(() => {
-                // Reset button back to normal after opening
-                button.innerHTML = '<span class="btn-text">Install App</span>';
-                button.classList.remove('entering');
-            }, 1800);
-        }
-    </script>
+        const icon = button.querySelector(".download-icon");
+        const text = button.querySelector(".download-text");
+
+        icon.className = "spinner";
+        icon.textContent = "";
+        text.textContent = "Opening link...";
+
+        setTimeout(function() {
+            window.location.href = url;
+        }, 500);
+    });
+});
+</script>
+
 </body>
 </html>
