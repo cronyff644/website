@@ -1,352 +1,522 @@
-```html
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jodd Top - Premium Apps</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        midnightBg: '#0b0f19',
-                        cardSurface: '#131824',
-                        goldAccent: '#d4af37',
-                    },
-                    animation: {
-                        'shine': 'shine 2.5s infinite linear',
-                    },
-                    keyframes: {
-                        shine: {
-                            '0%': { transform: 'translateX(-100%)' },
-                            '100%': { transform: 'translateX(100%)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Outfit & Plus Jakarta Sans -->
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
     <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0f19;
-            color: #e2e8f0;
+        :root {
+            --bg-color: #07090e;
+            --card-bg: #0f131f;
+            --card-border: rgba(0, 243, 255, 0.25);
+            --card-border-hover: rgba(0, 243, 255, 0.7);
+            --neon-cyan: #00f3ff;
+            --neon-purple: #b000ff;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --btn-green: #10b981;
+            --btn-green-hover: #059669;
+            --glow-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
         }
-        h1, h2, h3, h4, .font-heading {
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: 'Outfit', sans-serif;
         }
-        /* Sophisticated Luxury Card with Soft Glow */
-        .premium-card {
-            background: linear-gradient(135deg, rgba(19, 24, 36, 0.9) 0%, rgba(11, 15, 25, 0.95) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.6), inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(176, 0, 255, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 40%);
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background: rgba(15, 19, 31, 0.8);
             backdrop-filter: blur(12px);
-            transition: all 0.35s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
-        .premium-card:hover {
-            border-color: rgba(16, 185, 129, 0.4);
-            box-shadow: 0 20px 40px -10px rgba(16, 185, 129, 0.12), 0 0 25px rgba(212, 175, 55, 0.1);
-            transform: translateY(-4px);
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
-        /* Shiny Animation for Emerald Green Install Button */
-        .btn-shimmer {
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.2s ease, color 0.2s ease;
+        }
+
+        .menu-btn:hover {
+            color: var(--neon-cyan);
+            transform: scale(1.1);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .main-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #ffffff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        }
+
+        .main-heading span {
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Apps Grid (3 Apps) */
+        .apps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* App Box */
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 25px;
             position: relative;
             overflow: hidden;
+            box-shadow: var(--glow-shadow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
-        .btn-shimmer::after {
+
+        .app-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--card-border-hover);
+            box-shadow: 0 0 35px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(0, 243, 255, 0.05);
+        }
+
+        /* App Icon */
+        .app-icon-wrap {
+            width: 90px;
+            height: 90px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .app-icon-wrap img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+
+        .app-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+
+        .app-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Review & Tag info */
+        .app-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 25px;
+            padding: 10px 15px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .stars {
+            color: #f59e0b;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+        }
+
+        .hot-badge {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(255, 65, 108, 0.4);
+        }
+
+        /* Install Button with Slow Mirror Shine & Green Theme */
+        .install-btn {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: var(--btn-green);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            text-decoration: none;
+        }
+
+        .install-btn:hover {
+            background-color: var(--btn-green-hover);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Slow Mirror Shine Glare Animation (1.5s duration) */
+        .install-btn::after {
             content: '';
             position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                60deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.35) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg) translateX(-100%);
+            transition: transform 1.5s ease;
+        }
+
+        .install-btn:hover::after {
+            transform: rotate(30deg) translateX(100%);
+        }
+
+        /* Loading Circle Spinner inside Button */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid #ffffff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Sidebar Drawer */
+        .sidebar-overlay {
+            position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255, 255, 255, 0.35),
-                transparent
-            );
-            animation: shine 2.2s infinite linear;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            z-index: 1000;
         }
-        /* Soft text glow */
-        .text-glow {
-            text-shadow: 0 0 25px rgba(212, 175, 55, 0.25);
+
+        .sidebar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100%;
+            background: #0f131f;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            padding: 30px;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .sidebar.active {
+            right: 0;
+        }
+
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 15px;
+        }
+
+        .sidebar-header h3 {
+            font-size: 1.2rem;
+            color: var(--neon-cyan);
+        }
+
+        .close-sidebar {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-sidebar:hover {
+            color: #ffffff;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
+        }
+
+        .welcome-box {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .welcome-box h4 {
+            color: var(--neon-cyan);
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .welcome-box p, .edu-notice p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .edu-notice {
+            background: rgba(176, 0, 255, 0.05);
+            border: 1px solid rgba(176, 0, 255, 0.2);
+            border-radius: 12px;
+            padding: 15px;
+        }
+
+        .edu-notice h4 {
+            color: #d946ef;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .sidebar-footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .main-heading {
+                font-size: 2rem;
+            }
+            .apps-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
-<body class="bg-midnightBg text-slate-200 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-black">
+<body>
 
-    <!-- Navigation Bar -->
-    <header class="sticky top-0 z-40 w-full bg-[#0b0f19]/80 backdrop-blur-xl border-b border-slate-800/80">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shadow-lg shadow-amber-500/20">
-                    <i class="fa-solid fa-crown text-black text-base font-bold"></i>
-                </div>
-                <span class="text-xl font-extrabold tracking-wider font-heading text-white uppercase">
-                    Jodd<span class="text-amber-400">Top</span>
-                </span>
-            </div>
-
-            <!-- 3-Line Hamburger Menu Button -->
-            <button id="menuBtn" aria-label="Open Navigation Drawer" class="p-3 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-amber-400 hover:text-amber-300 transition-all border border-amber-500/20 shadow-md focus:outline-none">
-                <i class="fa-solid fa-bars text-lg"></i>
-            </button>
-        </div>
+    <!-- Header -->
+    <header>
+        <div class="logo">Jodd Top</div>
+        <button class="menu-btn" id="menuOpenBtn" aria-label="Open Menu">
+            <i class="fa-solid fa-bars-staggered"></i>
+        </button>
     </header>
 
-    <!-- Sidebar Drawer Overlay -->
-    <div id="overlay" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300"></div>
+    <!-- Main Container -->
+    <main class="container">
+        <h1 class="main-heading">Explore <span>Premium Apps</span></h1>
 
-    <!-- Sidebar Drawer -->
-    <aside id="sidebar" class="fixed top-0 right-0 h-full w-80 sm:w-96 bg-[#111622] border-l border-amber-500/20 z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col shadow-2xl">
-        <div class="p-6 flex items-center justify-between border-b border-slate-800">
-            <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center border border-amber-500/20">
-                    <i class="fa-solid fa-shield-halved text-sm"></i>
+        <div class="apps-grid">
+            <!-- App 1 -->
+            <div class="app-card">
+                <div class="app-icon-wrap">
+                    <img src="https://raw.githubusercontent.com/cronyff644/website/main/WhatsApp%20Image%202026-10-26%20at%208.51.10%20PM.jpeg" alt="App 1 Icon">
                 </div>
-                <h3 class="font-heading font-bold text-base text-white tracking-wide">Jodd Top Notice</h3>
+                <div class="app-title">INDIA GAME</div>
+                <div class="app-desc">Advanced game and privacy tool designed for ultimate gaming experience.</div>
+                <div class="app-meta">
+                    <div class="stars">★★★★★</div>
+                    <div class="hot-badge">Hot & Premium</div>
+                </div>
+                <a href="https://earnsio.in/click/u/66/o/70" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
+                    <span class="btn-text">Install App</span>
+                </a>
             </div>
-            <button id="closeBtn" aria-label="Close Menu" class="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white transition-all">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
+
+            <!-- App 2 -->
+            <div class="app-card">
+                <div class="app-icon-wrap">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2885/2885461.pn" alt="App 2 Icon">
+                </div>
+                <div class="app-title">Nexus Optimizer</div>
+                <div class="app-desc">Boost device performance and manage high-end resources efficiently.</div>
+                <div class="app-meta">
+                    <div class="stars">★★★★★</div>
+                    <div class="hot-badge">Hot & Premium</div>
+                </div>
+                <a href="https://example.com/app2" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
+                    <span class="btn-text">Install App</span>
+                </a>
+            </div>
+
+            <!-- App 3 -->
+            <div class="app-card">
+                <div class="app-icon-wrap">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="App 3 Icon">
+                </div>
+                <div class="app-title">Aura Launcher</div>
+                <div class="app-desc">Experience a sleek, futuristic UI interface with custom glowing widgets.</div>
+                <div class="app-meta">
+                    <div class="stars">★★★★★</div>
+                    <div class="hot-badge">Hot & Premium</div>
+                </div>
+                <a href="https://example.com/app3" target="_blank" class="install-btn" onclick="handleInstall(event, this)">
+                    <span class="btn-text">Install App</span>
+                </a>
+            </div>
         </div>
-
-        <div class="p-6 flex-1 overflow-y-auto space-y-5">
-            <!-- Welcome Message Box -->
-            <div class="p-4 rounded-xl bg-gradient-to-br from-slate-900 to-[#171d2b] border border-amber-500/20 shadow-inner">
-                <h4 class="font-heading font-semibold text-amber-400 mb-2 flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-hand-sparkles"></i> Welcome Message
-                </h4>
-                <p class="text-xs text-slate-300 leading-relaxed font-light">
-                    Welcome to Jodd Top! Explore our curated archive of elite high-performance software utilities engineered for professional workflows.
-                </p>
-            </div>
-
-            <!-- Educational Purpose Disclaimer -->
-            <div class="p-4 rounded-xl bg-gradient-to-br from-slate-900 to-[#171d2b] border border-emerald-500/20 shadow-inner">
-                <h4 class="font-heading font-semibold text-emerald-400 mb-2 flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-graduation-cap"></i> Educational Purpose
-                </h4>
-                <p class="text-xs text-slate-300 leading-relaxed font-light">
-                    This platform is strictly for educational purposes. All apps showcased demonstrate layout design, state management, and modern UI practices.
-                </p>
-            </div>
-        </div>
-
-        <div class="p-6 border-t border-slate-800 text-center text-xs text-slate-500 font-light">
-            &copy; 2026 Jodd Top Secure Portal.
-        </div>
-    </aside>
-
-    <!-- Main Content Section -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 flex flex-col justify-center">
-        
-        <!-- Header Section -->
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold mb-5 uppercase tracking-widest shadow-sm">
-                <i class="fa-solid fa-gem text-[10px]"></i> Jodd Top Collection
-            </span>
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold font-heading text-white tracking-tight mb-5 text-glow">
-                Premium Apps
-            </h1>
-            <p class="text-slate-400 text-sm sm:text-base font-light max-w-xl mx-auto leading-relaxed">
-                Experience next-generation software solutions wrapped in sophisticated minimalism and absolute reliability.
-            </p>
-        </div>
-
-        <!-- Apps Grid (3 App Cards) -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-            
-            <!-- App Card 1 -->
-            <div class="premium-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between group">
-                <div>
-                    <!-- App Icon & Review Header -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900/90 p-3 border border-amber-500/30 flex items-center justify-center shadow-lg group-hover:border-emerald-400/50 transition-colors">
-                            <img src="https://cdn-icons-png.flaticon.com/512/2885/2885465.png" alt="CyberShield Icon" class="w-full h-full object-contain filter drop-shadow" onerror="this.src='https://placehold.co/100x100/131824/d4af37?text=App'">
-                        </div>
-                        <div class="flex flex-col items-end gap-1.5">
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center gap-1 shadow-sm">
-                                5 <i class="fa-solid fa-star text-[10px]"></i>
-                            </span>
-                            <span class="px-2.5 py-0.5 rounded-md bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold uppercase tracking-wider">
-                                🔥 Hot & Premium
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Title & Description -->
-                    <h3 class="text-xl font-bold font-heading text-white mb-2.5 group-hover:text-amber-300 transition-colors">CyberShield Elite</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-light mb-8">
-                        Military-grade encrypted tunnel software guaranteeing absolute digital privacy, zero tracking, and uninterrupted high speeds.
-                    </p>
-                </div>
-
-                <!-- Emerald Install Button with Shine -->
-                <div>
-                    <a href="https://example.com/download/cybershield" target="_blank" rel="noopener noreferrer" 
-                       class="install-btn w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-heading font-bold text-sm shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 btn-shimmer transition-all">
-                        <span class="btn-text flex items-center gap-2">
-                            <i class="fa-solid fa-download text-xs"></i> Install App
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- App Card 2 -->
-            <div class="premium-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between group">
-                <div>
-                    <!-- App Icon & Review Header -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900/90 p-3 border border-amber-500/30 flex items-center justify-center shadow-lg group-hover:border-emerald-400/50 transition-colors">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3242/3242257.png" alt="Aura Notes Icon" class="w-full h-full object-contain filter drop-shadow" onerror="this.src='https://placehold.co/100x100/131824/d4af37?text=App'">
-                        </div>
-                        <div class="flex flex-col items-end gap-1.5">
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center gap-1 shadow-sm">
-                                5 <i class="fa-solid fa-star text-[10px]"></i>
-                            </span>
-                            <span class="px-2.5 py-0.5 rounded-md bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold uppercase tracking-wider">
-                                🔥 Hot & Premium
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Title & Description -->
-                    <h3 class="text-xl font-bold font-heading text-white mb-2.5 group-hover:text-amber-300 transition-colors">Aura Workspace Pro</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-light mb-8">
-                        An ultra-responsive knowledge repository and smart note suite built to elevate deep focus, task management, and organization.
-                    </p>
-                </div>
-
-                <!-- Emerald Install Button with Shine -->
-                <div>
-                    <a href="https://example.com/download/auranotes" target="_blank" rel="noopener noreferrer" 
-                       class="install-btn w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-heading font-bold text-sm shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 btn-shimmer transition-all">
-                        <span class="btn-text flex items-center gap-2">
-                            <i class="fa-solid fa-download text-xs"></i> Install App
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- App Card 3 -->
-            <div class="premium-card rounded-2xl p-6 lg:p-7 flex flex-col justify-between group">
-                <div>
-                    <!-- App Icon & Review Header -->
-                    <div class="flex items-start justify-between mb-6">
-                        <div class="w-16 h-16 rounded-2xl bg-slate-900/90 p-3 border border-amber-500/30 flex items-center justify-center shadow-lg group-hover:border-emerald-400/50 transition-colors">
-                            <img src="https://cdn-icons-png.flaticon.com/512/3659/3659898.png" alt="Zenith Media Player Icon" class="w-full h-full object-contain filter drop-shadow" onerror="this.src='https://placehold.co/100x100/131824/d4af37?text=App'">
-                        </div>
-                        <div class="flex flex-col items-end gap-1.5">
-                            <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold flex items-center gap-1 shadow-sm">
-                                5 <i class="fa-solid fa-star text-[10px]"></i>
-                            </span>
-                            <span class="px-2.5 py-0.5 rounded-md bg-gradient-to-r from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 text-emerald-300 text-[10px] font-semibold uppercase tracking-wider">
-                                🔥 Hot & Premium
-                            </span>
-                        </div>
-                    </div>
-
-                    <!-- Title & Description -->
-                    <h3 class="text-xl font-bold font-heading text-white mb-2.5 group-hover:text-amber-300 transition-colors">Zenith Ultra Player</h3>
-                    <p class="text-slate-400 text-xs leading-relaxed font-light mb-8">
-                        Lossless high-definition media suite equipped with customizable equalizer presets, surround profiles, and fluid gesture control.
-                    </p>
-                </div>
-
-                <!-- Emerald Install Button with Shine -->
-                <div>
-                    <a href="https://example.com/download/zenithplayer" target="_blank" rel="noopener noreferrer" 
-                       class="install-btn w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-heading font-bold text-sm shadow-lg shadow-emerald-900/40 flex items-center justify-center gap-2 btn-shimmer transition-all">
-                        <span class="btn-text flex items-center gap-2">
-                            <i class="fa-solid fa-download text-xs"></i> Install App
-                        </span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="w-full py-6 text-center text-xs text-slate-500 border-t border-slate-800/80 mt-16 font-light">
-        <p>Jodd Top &bull; Crafted with precision for educational study.</p>
-    </footer>
+    <!-- Sidebar Drawer -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <div class="sidebar" id="sidebar">
+        <div>
+            <div class="sidebar-header">
+                <h3>About Jodd Top</h3>
+                <button class="close-sidebar" id="menuCloseBtn">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="sidebar-content">
+                <div class="welcome-box">
+                    <h4>Welcome Message</h4>
+                    <p>Welcome to Jodd Top! Your ultimate destination for handpicked high-end applications and tools.</p>
+                </div>
+                <div class="edu-notice">
+                    <h4>Educational Purpose</h4>
+                    <p>This website and its content are created strictly for educational and demonstration purposes only.</p>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-footer">
+            &copy; 2026 Jodd Top. All rights reserved.
+        </div>
+    </div>
 
-    <!-- JavaScript for Sidebar Drawer & Connecting Spinner State -->
     <script>
-        // Drawer Menu Toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
+        // Sidebar Toggle Logic
+        const menuOpenBtn = document.getElementById('menuOpenBtn');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
         const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
 
-        function openDrawer() {
-            sidebar.classList.remove('translate-x-full');
-            overlay.classList.remove('hidden');
-            setTimeout(() => overlay.classList.remove('opacity-0'), 10);
-            document.body.style.overflow = 'hidden';
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
         }
 
-        function closeDrawer() {
-            sidebar.classList.add('translate-x-full');
-            overlay.classList.add('opacity-0');
-            setTimeout(() => overlay.classList.add('hidden'), 300);
-            document.body.style.overflow = '';
+        menuOpenBtn.addEventListener('click', toggleSidebar);
+        menuCloseBtn.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Install Button "Entering..." & Loading Circle Logic with href support
+        function handleInstall(event, button) {
+            // Prevent multiple clicks while loading
+            if (button.classList.contains('entering')) {
+                event.preventDefault();
+                return;
+            }
+
+            button.classList.add('entering');
+            
+            // Change button content to circle spinner and "Entering..." text while keeping green background
+            button.innerHTML = '<span class="spinner"></span> Entering...';
+
+            // Allow the link to open naturally via href after showing the state for a short moment
+            const targetUrl = button.getAttribute('href');
+            
+            setTimeout(() => {
+                // Reset button back to normal after opening
+                button.innerHTML = '<span class="btn-text">Install App</span>';
+                button.classList.remove('entering');
+            }, 1800);
         }
-
-        menuBtn.addEventListener('click', openDrawer);
-        closeBtn.addEventListener('click', closeDrawer);
-        overlay.addEventListener('click', closeDrawer);
-
-        // Install Button Connecting Simulation with Spinner
-        const installButtons = document.querySelectorAll('.install-btn');
-
-        installButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.classList.contains('pointer-events-none')) {
-                    e.preventDefault();
-                    return;
-                }
-
-                e.preventDefault(); // Pause immediate opening
-                const targetUrl = this.getAttribute('href');
-                const originalHtml = this.innerHTML;
-
-                // Disable and shift to loading state
-                this.classList.add('pointer-events-none', 'opacity-90', 'cursor-not-allowed');
-                this.classList.remove('btn-shimmer');
-                
-                this.innerHTML = `
-                    <svg class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span class="font-heading">Connecting...</span>
-                `;
-
-                // After 2.5 seconds, open link in new tab and restore button state
-                setTimeout(() => {
-                    window.open(targetUrl, '_blank');
-
-                    this.innerHTML = originalHtml;
-                    this.classList.remove('pointer-events-none', 'opacity-90', 'cursor-not-allowed');
-                    this.classList.add('btn-shimmer');
-                }, 2500);
-            });
-        });
     </script>
 </body>
 </html>
-```
